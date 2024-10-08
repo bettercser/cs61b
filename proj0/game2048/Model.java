@@ -143,6 +143,7 @@ public class Model extends Observable {
 
             }
         }
+        board.startViewingFrom(Side.NORTH);
         if(side.equals(Side.NORTH))
             checkGameOver();
         if (changed) {
