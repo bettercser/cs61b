@@ -90,6 +90,7 @@ public class ArrayDeque<T> {
             moveToNewArray(newCapacity);
             capacity = newCapacity;
         }
+
     }
     public void printDeque(){
         int len = 0;
