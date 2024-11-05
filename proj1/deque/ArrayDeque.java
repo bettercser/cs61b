@@ -106,7 +106,7 @@ public class ArrayDeque<T> {
         if(index < 0 || index >= size){
             throw new IndexOutOfBoundsException();
         }
-        return array[(head + index + 1) % capacity];
+        return array[(head + index) % capacity];
     }
 
     public boolean equals(Object o){
