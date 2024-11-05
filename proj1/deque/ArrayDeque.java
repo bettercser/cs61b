@@ -1,6 +1,7 @@
 package deque;
 
 import java.util.Deque;
+import java.util.Objects;
 
 public class ArrayDeque<T> {
     private T[] array;
@@ -17,6 +18,7 @@ public class ArrayDeque<T> {
         head = 0;
         tail = 0;
     }
+
     public int size(){
         return size;
     }
@@ -104,6 +106,22 @@ public class ArrayDeque<T> {
         if(index < 0 || index >= size){
             throw new IndexOutOfBoundsException();
         }
-        return array[(head + index) % capacity];
+        return array[(head + index + 1) % capacity];
+    }
+
+    public boolean equals(Object o){
+        if(o instanceof ArrayDeque){
+            ArrayDeque<T> other = (ArrayDeque<T>)o;
+            if(size != other.size){
+                return false;
+            }
+            for (int i = 0; i < size; i++) {
+                if(!Objects.equals(get(i), other.get(i))){
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }
