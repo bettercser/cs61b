@@ -9,14 +9,14 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
         super();
         this.comparator = comparator;
     }
-    public T max(Comparator<T> comparator) {
+    public T max(Comparator<T> otherComparator) {
         if (size() == 0) {
             return null;
         }
         T maxVal = get(initMaxIdx);
         for (int i = 1; i < size(); i++) {
             T item = get(i);
-            if (comparator.compare(maxVal, item) < 0) {
+            if (otherComparator.compare(maxVal, item) < 0) {
                 maxVal = item;
             }
         }
