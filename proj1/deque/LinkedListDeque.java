@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
 
-    private class Node{
+    private class Node {
         private T data;
         private Node next;
         private Node prev;
@@ -26,11 +26,11 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         tail.next = head;
         size = 0;
     }
-    public int size(){
+    public int size() {
         return size;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size() == 0;
     }
 
@@ -52,9 +52,9 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         size++;
     }
 
-    public void printDeque(){
+    public void printDeque() {
         Node current = head.next;
-        while(current != tail){
+        while (current != tail) {
             System.out.print(current.data + " ");
             current = current.next;
 
@@ -62,8 +62,8 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         System.out.println();
     }
 
-    public T removeFirst(){
-        if(isEmpty()){
+    public T removeFirst() {
+        if (isEmpty()) {
             return null;
         }
         T data = head.next.data;
@@ -73,20 +73,20 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         return data;
     }
 
-    public T get(int index){
-        if (index < 0 || index >= size){
+    public T get(int index) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
         Node current = head.next;
-        for(int i = 0; i < index; i++){
+        for (int i = 0; i < index; i++) {
             current = current.next;
         }
         return current.data;
     }
 
-    public T removeLast(){
+    public T removeLast() {
 
-        if(isEmpty()){
+        if (isEmpty()) {
             return null;
         }
         T data = tail.prev.data;
@@ -97,16 +97,16 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     }
 
     @Override
-    public boolean equals(Object o){
-        if(this == o){return true;}
+    public boolean equals(Object o) {
+        if (this == o) { return true; }
         if (o instanceof LinkedListDeque){
             LinkedListDeque other = (LinkedListDeque) o;
             Node thisHead = head.next;
             Node otherHead = other.head.next;
-            if(other.size() != size()) return false;
+            if (other.size() != size()) return false;
 
-            while(otherHead != null){
-                if(!Objects.equals(thisHead.data, otherHead.data)) return false;
+            while (otherHead != null) {
+                if (!Objects.equals(thisHead.data, otherHead.data)) return false;
                 thisHead = thisHead.next;
                 otherHead = otherHead.next;
             }
@@ -120,12 +120,12 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     private class ListIterator implements Iterator<T> {
         private Node current = head.next;
         @Override
-        public boolean hasNext(){
+        public boolean hasNext() {
             return current != tail;
         }
 
         @Override
-        public T next(){
+        public T next() {
             T item = current.data;
             current = current.next;
             return item;
@@ -133,7 +133,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     }
 
     @Override
-    public Iterator<T> iterator(){
+    public Iterator<T> iterator() {
         return new ListIterator();
     }
 }

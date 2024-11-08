@@ -13,7 +13,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     @SuppressWarnings("unchecked")
     public ArrayDeque() {
         capacity = 8;
-        array = (T[])new Object[capacity];
+        array = (T[]) new Object[capacity];
         size = 0;
         head = 0;
         tail = 0;
@@ -28,7 +28,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     }
 
     public void addFirst(T item){
-        if(size == capacity - 1){
+        if (size == capacity - 1) {
             int newCapacity = capacity * 2;
             moveToNewArray(newCapacity);
             capacity = newCapacity;
@@ -38,8 +38,8 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         size++;
     }
 
-    public void addLast(T item){
-        if(size == capacity - 1){
+    public void addLast(T item) {
+        if (size == capacity - 1) {
             int newCapacity = capacity * 2;
             moveToNewArray(newCapacity);
             capacity = newCapacity;
@@ -50,8 +50,8 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         size++;
     }
 
-    public T removeFirst(){
-        if(isEmpty()){
+    public T removeFirst() {
+        if (isEmpty()) {
             return null;
         }
         T item = array[head];
@@ -62,8 +62,8 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         return item;
     }
 
-    public T removeLast(){
-        if(isEmpty()){
+    public T removeLast() {
+        if (isEmpty()) {
             return null;
         }
         tail = (tail - 1 + capacity) % capacity;
@@ -74,8 +74,8 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         return item;
     }
     @SuppressWarnings("unchecked")
-    public void moveToNewArray(int newCapacity){
-        T[] newArray = (T[])new Object[newCapacity];
+    public void moveToNewArray(int newCapacity) {
+        T[] newArray = (T[]) new Object[newCapacity];
         int index = 0;
 
 
@@ -86,8 +86,8 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         tail = size;
         array = newArray;
     }
-    public void reSize(){
-        if(capacity >= 16 && size < capacity / 4){
+    public void reSize() {
+        if (capacity >= 16 && size < capacity / 4) {
             int newCapacity = capacity / 4;
             moveToNewArray(newCapacity);
             capacity = newCapacity;
@@ -96,14 +96,14 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     }
     public void printDeque(){
         int len = 0;
-        while(len < size){
+        while (len < size) {
             System.out.print(array[(head + len) % capacity] + " ");
             len += 1;
         }
         System.out.println();
     }
     public T get(int index){
-        if(index < 0 || index >= size){
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
         return array[(head + index) % capacity];
@@ -111,10 +111,10 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     @Override
     public boolean equals(Object o){
-        if(this == o){return true;}
-        if(o instanceof ArrayDeque){
-            ArrayDeque<T> other = (ArrayDeque<T>)o;
-            if(size != other.size){
+        if (this == o) { return true; }
+        if (o instanceof ArrayDeque) {
+            ArrayDeque<T> other = (ArrayDeque<T>) o;
+            if (size != other.size) {
                 return false;
             }
             for (int i = 0; i < size; i++) {
@@ -142,7 +142,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
         @Override
         public T next() {
-            if(hasNext()){
+            if (hasNext()) {
                 T item = get(wiz);
                 wiz++;
                 return item;
