@@ -29,7 +29,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         return size;
     }
 
-    public boolean isEmpty() {
+    private boolean isEmpty() {
         return size() == 0;
     }
 
@@ -115,19 +115,18 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
             return true;
         }
         if (o instanceof Deque) {
-            LinkedListDeque other = (LinkedListDeque) o;
-            Node thisHead = head.next;
-            Node otherHead = other.head.next;
+            Deque<T> other = (Deque<T>) o;
+
             if (other.size() != size()) {
                 return false;
-            } else {
-                while (otherHead != null) {
-                    if (!Objects.equals(thisHead.data, otherHead.data)) return false;
-                    thisHead = thisHead.next;
-                    otherHead = otherHead.next;
-                }
-                return true;
             }
+            for (int i = 0; i < size(); i++) {
+                if (!Objects.equals(get(i), other.get(i))) {
+                    return false;
+                }
+            }
+            return true;
+
         } else {
             return false;
         }
