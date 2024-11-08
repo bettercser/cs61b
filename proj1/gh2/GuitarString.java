@@ -1,8 +1,8 @@
 package gh2;
 
-// TODO: uncomment the following import once you're ready to start this portion
+
 // import deque.Deque;
-// TODO: maybe more imports
+
 
 import deque.ArrayDeque;
 import deque.Deque;
@@ -14,7 +14,7 @@ public class GuitarString {
      * other topics in lecture on Friday. */
     private static final int SR = 44100;      // Sampling Rate
     private static final double DECAY = .996; // energy decay factor
-    private static final int _FIRST = 0;
+    private static final int FIRST = 0;
     /* Buffer for storing sound data. */
     private Deque<Double> buffer;
 
@@ -52,14 +52,16 @@ public class GuitarString {
     public void tic() {
 
         double currentFirst = buffer.removeFirst();
-        double mean = (currentFirst + buffer.get(_FIRST)) / 2;
+        double mean = (currentFirst + buffer.get(FIRST)) / 2;
         buffer.addLast(DECAY * mean);
 
     }
 
     /* Return the double at the front of the buffer. */
     public double sample() {
-        if (!buffer.isEmpty()) { return buffer.get(_FIRST); }
+        if (!buffer.isEmpty()) {
+            return buffer.get(FIRST);
+        }
         return 0;
     }
 

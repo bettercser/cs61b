@@ -19,15 +19,15 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         tail = 0;
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size == 0;
     }
 
-    public void addFirst(T item){
+    public void addFirst(T item) {
         if (size == capacity - 1) {
             int newCapacity = capacity * 2;
             moveToNewArray(newCapacity);
@@ -94,7 +94,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         }
 
     }
-    public void printDeque(){
+    public void printDeque() {
         int len = 0;
         while (len < size) {
             System.out.print(array[(head + len) % capacity] + " ");
@@ -102,7 +102,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         }
         System.out.println();
     }
-    public T get(int index){
+    public T get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
@@ -110,8 +110,10 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     }
 
     @Override
-    public boolean equals(Object o){
-        if (this == o) { return true; }
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
         if (o instanceof Deque) {
             ArrayDeque<T> other = (ArrayDeque<T>) o;
             if (size != other.size) {
@@ -132,7 +134,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         return new ArrayDequeIterator();
     }
 
-    private class ArrayDequeIterator implements Iterator<T>{
+    private class ArrayDequeIterator implements Iterator<T> {
         private int wiz = 0;
 
         @Override
