@@ -13,6 +13,18 @@ import static org.junit.Assert.*;
 public class TestGuitarString  {
 
     @Test
+    public void testMypluck() {
+        GuitarString aString = new GuitarString(GuitarHeroLite.CONCERT_A);
+        aString.pluck();
+        int size = aString.size();
+        for(int i = 0; i < size; i++) {
+            double value = aString.get(i);
+            assertTrue("value should be between -0.5 - 0.5 but we get" + value, value >= -0.5 && value <= 0.5);
+        }
+    }
+
+
+    @Test
     public void testPluckTheAString() {
         GuitarString aString = new GuitarString(GuitarHeroLite.CONCERT_A);
         aString.pluck();

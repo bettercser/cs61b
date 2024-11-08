@@ -1,9 +1,10 @@
 package deque;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class LinkedListDeque<T> {
+public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
 
     private class Node{
         private T data;
@@ -95,7 +96,9 @@ public class LinkedListDeque<T> {
         return data;
     }
 
+    @Override
     public boolean equals(Object o){
+        if(this == o){return true;}
         if (o instanceof LinkedListDeque){
             LinkedListDeque other = (LinkedListDeque) o;
             Node thisHead = head.next;
@@ -112,5 +115,25 @@ public class LinkedListDeque<T> {
         }else{
             return false;
         }
+    }
+
+    private class ListIterator implements Iterator<T> {
+        private Node current = head.next;
+        @Override
+        public boolean hasNext(){
+            return current != tail;
+        }
+
+        @Override
+        public T next(){
+            T item = current.data;
+            current = current.next;
+            return item;
+        }
+    }
+
+    @Override
+    public Iterator<T> iterator(){
+        return new ListIterator();
     }
 }

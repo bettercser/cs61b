@@ -1,9 +1,9 @@
 package deque;
 
-import java.util.Deque;
+import java.util.Iterator;
 import java.util.Objects;
 
-public class ArrayDeque<T> {
+public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     private T[] array;
     private int size;
 
@@ -109,7 +109,9 @@ public class ArrayDeque<T> {
         return array[(head + index) % capacity];
     }
 
+    @Override
     public boolean equals(Object o){
+        if(this == o){return true;}
         if(o instanceof ArrayDeque){
             ArrayDeque<T> other = (ArrayDeque<T>)o;
             if(size != other.size){
@@ -123,5 +125,29 @@ public class ArrayDeque<T> {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new ArrayDequeIterator();
+    }
+
+    private class ArrayDequeIterator implements Iterator<T>{
+        private int wiz = 0;
+
+        @Override
+        public boolean hasNext() {
+            return wiz < size;
+        }
+
+        @Override
+        public T next() {
+            if(hasNext()){
+                T item = get(wiz);
+                wiz++;
+                return item;
+            }
+            return null;
+        }
     }
 }

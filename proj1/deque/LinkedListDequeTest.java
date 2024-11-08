@@ -136,4 +136,17 @@ public class LinkedListDequeTest {
 
 
     }
+
+    @Test
+    public void iteratorDequeTest() {
+        System.out.println("It's iterator test");
+        LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
+        for(int i = 0; i < 100000; i++){
+            lld1.addLast(i);
+        }
+        int m = 0;
+        for(Integer i : lld1){
+            assertEquals("Should have the same value", i, m++, 0.0);
+        }
+    }
 }
