@@ -23,7 +23,7 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
 
         return maxVal;
     }
-    public T max(){
+    public T max() {
         return max(comparator);
     }
 }
