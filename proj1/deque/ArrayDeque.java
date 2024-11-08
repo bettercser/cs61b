@@ -74,7 +74,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         return item;
     }
     @SuppressWarnings("unchecked")
-    public void moveToNewArray(int newCapacity) {
+    private void moveToNewArray(int newCapacity) {
         T[] newArray = (T[]) new Object[newCapacity];
         int index = 0;
 
@@ -86,7 +86,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         tail = size;
         array = newArray;
     }
-    public void reSize() {
+    private void reSize() {
         if (capacity >= 16 && size < capacity / 4) {
             int newCapacity = capacity / 4;
             moveToNewArray(newCapacity);
@@ -112,7 +112,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     @Override
     public boolean equals(Object o){
         if (this == o) { return true; }
-        if (o instanceof ArrayDeque) {
+        if (o instanceof Deque) {
             ArrayDeque<T> other = (ArrayDeque<T>) o;
             if (size != other.size) {
                 return false;
@@ -128,7 +128,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
         return new ArrayDequeIterator();
     }
 

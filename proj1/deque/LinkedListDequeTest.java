@@ -149,4 +149,18 @@ public class LinkedListDequeTest {
             assertEquals("Should have the same value", i, m++, 0.0);
         }
     }
+
+    @Test
+    public void getRecursiveTest() {
+        System.out.println("Get recursive test");
+        LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
+        for (int i = 0; i < 10000; i++) {
+            lld1.addLast(i);
+        }
+
+        int listSize = lld1.size();
+        for (int i = 0; i < listSize; i++) {
+            assertEquals("the resule of get and getRecursive must be fucking same", lld1.get(i), lld1.getRecursive(i), 0.0);
+        }
+    }
 }

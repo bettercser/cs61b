@@ -52,23 +52,16 @@ public class GuitarString {
     public void tic() {
 
         double currentFirst = buffer.removeFirst();
-        double mean = (currentFirst + buffer.get(0)) / 2;
+        double mean = (currentFirst + buffer.get(_FIRST)) / 2;
         buffer.addLast(DECAY * mean);
 
     }
 
     /* Return the double at the front of the buffer. */
     public double sample() {
-        if (!buffer.isEmpty()) { return buffer.get(0); }
+        if (!buffer.isEmpty()) { return buffer.get(_FIRST); }
         return 0;
     }
 
-    public int size() {
-        return buffer.size();
-    }
-
-    public double get(int idx){
-        return buffer.get(idx);
-    }
 }
 
