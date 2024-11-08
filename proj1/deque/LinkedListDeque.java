@@ -29,7 +29,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         return size;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return size() == 0;
     }
 

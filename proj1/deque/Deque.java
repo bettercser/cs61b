@@ -3,9 +3,8 @@ package deque;
 public interface Deque<T> {
     int size();
 
-    private boolean isEmpty() {
-        return false;
-    }
+    boolean isEmpty();
+
 
     void addFirst(T item);
 
