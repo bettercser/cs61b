@@ -35,6 +35,9 @@ public class CapersRepository {
     public static void setupPersistence() {
 
         try {
+            if (!CAPERS_FOLDER.exists()) {
+                CAPERS_FOLDER.mkdir();
+            }
             File storyFile = Utils.join(CAPERS_FOLDER, "story");
             if (!storyFile.exists()) {
                 storyFile.createNewFile();
@@ -56,11 +59,8 @@ public class CapersRepository {
      */
     public static void writeStory(String text) {
         File storyFile = Utils.join(CAPERS_FOLDER, "story");
-        if (storyFile.exists()) {
-            String newText = Utils.readContentsAsString(storyFile) + text +"\n";
-
-            Utils.writeContents(storyFile, newText);
-        }
+        String newText = Utils.readContentsAsString(storyFile) + text +"\n";
+        Utils.writeContents(storyFile, newText);
         System.out.println(Utils.readContentsAsString(storyFile));
     }
 
@@ -87,5 +87,6 @@ public class CapersRepository {
 
         Dog restoreDog = Dog.fromFile(name);
         restoreDog.haveBirthday();
+        restoreDog.saveDog();
     }
 }
