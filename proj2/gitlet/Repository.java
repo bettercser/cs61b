@@ -243,13 +243,13 @@ public class Repository {
         Commit headCommit = Commit.getHeadCommit();
         do {
             printCommit(headCommit);
-            if (headCommit.getDirectParentHash() != "") {
+            if (!"".equals(headCommit.getDirectParentHash())) {
                 headCommit = Commit.getCommitFromHash(headCommit.getDirectParentHash());
             } else {
                 System.exit(0);
             }
 
-        } while (headCommit.getDirectParentHash() != "");
+        } while (!"".equals(headCommit.getHash()));
     }
 
 
@@ -262,7 +262,7 @@ public class Repository {
         }
         System.out.println("Date: " + Commit.dateToString(commit.getDate()));
         System.out.println(commit.getMessage());
-
+        System.out.println();
     }
 
     public static void doFind(String message) {
