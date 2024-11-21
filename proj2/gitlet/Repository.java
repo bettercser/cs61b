@@ -393,6 +393,13 @@ public class Repository {
             System.exit(0);
         }
 
+        Commit changeCommit = Commit.getCommitFromBranch(branchName);
+        doChangeCommit(changeCommit);
+        Branch.doAllSave(branchName, changeCommit);
+    }
+
+    private static void doChangeCommit(Commit changeCommit) {
+
         List<String> curWorkFile = Utils.plainFilenamesIn(CWD);
         List<String> addStagingFile = Utils.plainFilenamesIn(ADD_STAGE);
         List<String> removeStagingFile = Utils.plainFilenamesIn(REMOVE_STAGE);
@@ -405,7 +412,6 @@ public class Repository {
             }
         }
 
-        Commit changeCommit = Commit.getCommitFromBranch(branchName);
         HashMap<String, String> changeCommitBlobsMap = changeCommit.getBlobsMap();
 
         /**
@@ -450,15 +456,34 @@ public class Repository {
             System.exit(0);
         }
         String curCommitHash = Commit.getHeadCommitHash();
-        File branchFile = Utils.join(REFS_HEADs, branchName);
-        try {
-            branchFile.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Utils.writeContents(branchFile, curCommitHash);
+        Branch.saveBranch(branchName, curCommitHash);
     }
 
+    public static void doRemoveBranch(String branchName) {
+        String curBranch = Branch.getCurBranch();
+        if (curBranch.equals(branchName)) {
+            System.out.println("Cannot remove the current branch.");
+            System.exit(0);
+        }
+        List<String> allBranches = Branch.getAllBranches();
+        if (!allBranches.contains(curBranch)) {
+            System.out.println("A branch with that name does not exist.");
+            System.exit(0);
+        }
+        File rmBranchFile = Utils.join(REFS_HEADs, branchName);
+        rmBranchFile.delete();
+    }
+
+    public static void doReset(String commitHash) {
+        List<String> allCommit = Utils.plainFilenamesIn(COMMIT);
+        if (!allCommit.contains(commitHash)) {
+            System.out.println("No commit with that id exists.");
+            System.exit(0);
+        }
+        Commit changeCommit = Commit.getCommitFromHash(commitHash);
+        doChangeCommit(changeCommit);
+        Branch.saveBranch(Branch.getCurBranch(), commitHash);
+    }
 
     public static void main(String[] args) {
         System.out.println(new Date(0));

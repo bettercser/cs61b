@@ -100,6 +100,20 @@ public class Main {
                 String branchName = args[1];
                 Repository.doBranch(branchName);
                 break;
+            case "rm-branch":
+                if (args.length != 2) {
+                    Utils.error("Mush have rm branch name");
+                }
+                String rmBranchName = args[1];
+                Repository.doRemoveBranch(rmBranchName);
+                break;
+            case "reset":
+                if (args.length != 2) {
+                    Utils.error("Must have commit id");
+                }
+                String commitId = args[1];
+                Repository.doReset(commitId);
+                break;
         }
     }
 }
