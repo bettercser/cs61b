@@ -256,7 +256,7 @@ public class Repository {
 
     private static void printCommit(Commit commit) {
         System.out.println("===");
-        System.out.println("commit: " + commit.getHash());
+        System.out.println("commit " + commit.getHash());
         if (commit.getOtherParentHash() != null) {
             System.out.println("Merge: " + commit.getDirectParentHash().substring(0, 8) + " " + commit.getOtherParentHash().substring(0, 8));
         }
