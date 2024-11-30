@@ -485,6 +485,11 @@ public class Repository {
         Branch.saveBranch(Branch.getCurBranch(), commitHash);
     }
 
+    public static void doMerge(String branchName) {
+        String curBranch = Branch.getCurBranch();
+        
+    }
+
     public static void main(String[] args) {
         System.out.println(new Date(0));
     }
